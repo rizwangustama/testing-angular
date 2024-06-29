@@ -28,6 +28,9 @@ import { InputIconModule } from 'primeng/inputicon';
 import { DetailEmployeeComponent } from './features/employee/detail-employee/detail-employee.component';
 
 import { CalendarModule } from 'primeng/calendar';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ import { CalendarModule } from 'primeng/calendar';
   ],
 
   imports: [
+    DropdownModule,
+    InputNumberModule,
     CalendarModule,
     IconFieldModule,
     InputIconModule,

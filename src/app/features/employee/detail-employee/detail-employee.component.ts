@@ -18,6 +18,17 @@ export class DetailEmployeeComponent implements OnInit {
   employee!: Employee[];
   detailEmployee!: any;
   public isDisabled: boolean = false;
+  maxDate: Date = new Date();
+  public listStatus: any[] = [
+    {
+      name: 'Active',
+      value: 'Active'
+    },
+    {
+      name: 'Inactive',
+      value: 'Inactive'
+    }
+  ];
 
   constructor(
     private fb: FormBuilder,
