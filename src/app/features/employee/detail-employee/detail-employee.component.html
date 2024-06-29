@@ -1,5 +1,5 @@
 <p-toast />
-<section class="container">
+<section class="container py-20">
     <div class="max-w-xl mx-auto">
         <p-panel header="Detail Employee">
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col gap-6">
@@ -8,67 +8,53 @@
                     <input pInputText id="username" aria-describedby="username-help" formControlName="username" />
                     <span class="error-message" *ngIf="hasError('username', 'required')">Username is required</span>
                 </div>
-                <div class="flex flex-col gap-2">
-                    <label for="username">Fist Name</label>
-                    <input pInputText id="firstName" aria-describedby="firstName" formControlName="firstName" />
-                </div>
-                <div class="flex flex-col gap-2">
-                    <label for="lastName">Last Name</label>
-                    <input pInputText id="lastName" aria-describedby="lastName-help" formControlName="lastName" />
+                <div class="flex flex-row gap-5">
+                    <div class="flex flex-col gap-2 w-1/2">
+                        <label for="firstName">Fist Name</label>
+                        <input pInputText id="firstName" aria-describedby="firstName" formControlName="firstName" />
+                    </div>
+                    <div class="flex flex-col gap-2 w-1/2">
+                        <label for="lastName">Last Name</label>
+                        <input pInputText id="lastName" aria-describedby="lastName-help" formControlName="lastName" />
+                    </div>
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="email">Email</label>
                     <input pInputText id="email" aria-describedby="email-help" formControlName="email" />
                 </div>
-                <div class="flex flex-col gap-2">
-                    <label for="birthDate">Birth Date</label>
-                    <p-calendar styleClass="w-full" [showIcon]="true" [maxDate]="maxDate" id="birthDate" formControlName="birthDate" />
+                <div class="flex flex-row gap-5">
+                    <div class="flex flex-col gap-2 w-1/2">
+                        <label for="birthDate">Birth Date</label>
+                        <p-calendar styleClass="w-full" [showIcon]="true" [maxDate]="maxDate" id="birthDate"
+                            formControlName="birthDate" />
+                    </div>
+                    <div class="flex flex-col gap-2 w-1/2">
+                        <label for="status">Status</label>
+                        <p-dropdown formControlName="status" styleClass="w-full" [options]="listStatus"
+                            optionValue="description" optionLabel="name" placeholder="Select a Status" />
+                    </div>
                 </div>
-
                 <div class="flex flex-col gap-2">
                     <label for="basicSalary">Basic Salary</label>
-                    <p-inputNumber 
-    id="basicSalary"
-    styleClass="w-full"
-    formControlName="basicSalary" 
-    inputId="currency-us" 
-    mode="currency" 
-    currency="IDR" 
-    locale="id-ID" /> 
-                    <!-- <input pInputText id="basicSalary" aria-describedby="email-help" formControlName="basicSalary" /> -->
+                    <p-inputNumber id="basicSalary" styleClass="w-full" formControlName="basicSalary"
+                        inputId="currency-us" mode="currency" currency="IDR" locale="id-ID" />
                 </div>
-
                 <div class="flex flex-col gap-2">
                     <label for="group">Group</label>
-                    <input pInputText id="group" aria-describedby="email-help" formControlName="group" />
+                    <p-dropdown styleClass="w-full" [options]="listGroup" formControlName="group" optionValue="description" optionLabel="name" [filter]="true"
+                        filterBy="name" [showClear]="true" placeholder="Select a Group">
+                    </p-dropdown>
+
                 </div>
-
-
                 <div class="flex flex-col gap-2">
                     <label for="description">Description</label>
-                    <input pInputText id="description" aria-describedby="email-help" formControlName="description" />
+                    <textarea rows="5" cols="30" pInputTextarea id="description" aria-describedby="email-help"
+                        formControlName="description">
+                    </textarea>
                 </div>
-                
-                
-
-
-                <div class="flex flex-col gap-2">
-                    <label for="status">Status</label>
-                    <p-dropdown 
-        formControlName="selectedCity" 
-        [options]="listStatus"
-        optionLabel="name"
-        placeholder="Select a City" />
-                </div>
-
-
-
-
-
-
                 <div class="flex flex-row gap-4 justify-end">
                     <p-button type="submit" label="Save" [disabled]="!form.valid" severity="primary"></p-button>
-                    <p-button type="button" label="Cancel" severity="danger"></p-button>
+                    <p-button type="button" (click)="onCancel()" label="Cancel" severity="danger"></p-button>
                 </div>
             </form>
         </p-panel>

@@ -5,11 +5,12 @@ rejectButtonStyleClass="p-button-outlined"
 acceptButtonStyleClass="p-button-danger"
 />
 <p-toast />
-<section class="container">
+<section class="container py-20">
     <p-panel header="List Employee">
     <p-table 
         #dt2
         [value]="employees" 
+        [scrollable]="true"
         [loading]="loading"
         [paginator]="true" [rows]="5" 
         [tableStyle]="{ 'min-width': '50rem' }"
@@ -35,11 +36,14 @@ acceptButtonStyleClass="p-button-danger"
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:25%">Action</th>
-                <th style="width:25%">User Name</th>
-                <th style="width:25%">First Name</th>
-                <th style="width:25%">Last Name</th>
-                <th style="width:25%">Email</th>
+                <th >Action</th>
+                <th style="min-width: 300px;"  pSortableColumn="username">User Name <p-sortIcon field="username" /></th>
+                <th style="min-width: 300px;" pSortableColumn="firstName">Full Name <p-sortIcon field="firstName" /></th>
+                <th style="min-width: 300px;" pSortableColumn="email">Email <p-sortIcon field="email" /></th>
+                <th style="min-width: 300px;">Birth Date</th>
+                <th style="min-width: 300px;" pSortableColumn="basicSalary">Basic Salary <p-sortIcon field="basicSalary" /></th>
+                <th style="min-width: 300px;" pSortableColumn="status">Status <p-sortIcon field="status" /></th>
+                <th style="min-width: 300px;" pSortableColumn="group">Group <p-sortIcon field="group" /></th>
             </tr>
             <tr>
                 <td class="py-2.5"></td>
@@ -47,29 +51,40 @@ acceptButtonStyleClass="p-button-danger"
                     <p-columnFilter 
                     type="text"
                     field="username" 
-                    placeholder="Search by name" 
-                    ariaLabel="Filter Name" />
+                    placeholder="Search by User Name" 
+                    ariaLabel="Filter User Name" />
                 </td>
                 <td  class="py-2.5">
                     <p-columnFilter 
                     type="text"
                     field="firstName" 
-                    placeholder="Search by name" 
-                    ariaLabel="Filter Name" />
-                </td>
-                <td  class="py-2.5">
-                    <p-columnFilter 
-                    type="text"
-                    field="lastName" 
-                    placeholder="Search by name" 
+                    placeholder="Search by Name" 
                     ariaLabel="Filter Name" />
                 </td>
                 <td  class="py-2.5">
                     <p-columnFilter 
                     type="text"
                     field="email" 
-                    placeholder="Search by name" 
-                    ariaLabel="Filter Name" />
+                    placeholder="Search by Email" 
+                    ariaLabel="Filter Email" />
+                </td>
+                <td  class="py-2.5">
+                    <p-columnFilter 
+                    type="date"
+                    field="birthDate" 
+                    placeholder="Search by Email" 
+                    ariaLabel="Filter Email" />
+                    
+                </td>
+                <td  class="py-2.5">
+                    <p-columnFilter 
+                    type="text"
+                    field="basicSalary" 
+                    placeholder="Search by Basic Salary" 
+                    ariaLabel="Filter Basic Salary" />
+                </td>
+                <td  class="py-2.5"></td>
+                <td  class="py-2.5"></td>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-employee>
@@ -83,9 +98,15 @@ acceptButtonStyleClass="p-button-danger"
                     </p-button>
                 </td>
                 <td>{{ employee.username }}</td>
-                <td>{{ employee.firstName }}</td>
-                <td>{{ employee.lastName }}</td>
+                <td>{{ employee.firstName + ' ' + employee.lastName }}</td>
                 <td>{{ employee.email }}</td>
+                <td>{{ employee.birthDate.toLocaleDateString() }}</td>
+                <td>{{ employee.basicSalary }}</td>
+                <td>
+                    <p-tag [value]="employee.status" styleClass="py-2 px-4 bg-green-100 text-green-500 text-sm"  [rounded]="true" severity="success" *ngIf="employee.status === 'Active'"></p-tag>
+                    <p-tag [value]="employee.status" styleClass="py-2 px-4 bg-red-100 text-red-500 text-sm"  [rounded]="true" severity="danger" *ngIf="employee.status === 'Inactive'"></p-tag>
+                </td>
+                <td>{{ employee.group }}</td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">

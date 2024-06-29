@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { Employee } from '../../../models/employee-model.models';
+import { Employee, EmployeeStatus, EmployeeGroupName, EmployeeGroupDescription } from '../../../models/employee-model.models';
 import { EmployeeServices } from '../../../services/employee.services'
 import { MessageService } from 'primeng/api';
 
@@ -22,13 +22,15 @@ export class DetailEmployeeComponent implements OnInit {
   public listStatus: any[] = [
     {
       name: 'Active',
-      value: 'Active'
+      description: EmployeeStatus.Active
     },
     {
       name: 'Inactive',
-      value: 'Inactive'
+      description: EmployeeStatus.Inactive
     }
   ];
+
+  public listGroup!: any[];
 
   constructor(
     private fb: FormBuilder,
@@ -55,7 +57,12 @@ export class DetailEmployeeComponent implements OnInit {
     });
 
     await this.getDetailEmployee();
+    this.listGroup = this.employeeServices.getListEmployeeGroup();
     this.fieldForm();
+  }
+
+  onCancel() : void {
+    this.router.navigate(['/employee']);
   }
 
   async getDetailEmployee() {
@@ -69,7 +76,7 @@ export class DetailEmployeeComponent implements OnInit {
         ...this.form.value
       };
       let success = this.employeeServices.updateEmployee(updatedEmployee);
-      this.showWarning('Update Success');
+      this.showSuccess('Update Data Employee Success');
       this.router.navigate(['/employee']);
     }
   }
@@ -112,5 +119,10 @@ export class DetailEmployeeComponent implements OnInit {
 
   public showWarning(Content?: string) {
     this.messageService.add({severity: 'warn', summary: 'Warn Message', detail: Content || 'Warn Message'});
+  }
+
+  getUnitCode(event: any) {
+    const g = this.listGroup.find((x: any) => x.group === event);
+    return g?.description;
   }
 }

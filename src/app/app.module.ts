@@ -30,6 +30,12 @@ import { DetailEmployeeComponent } from './features/employee/detail-employee/det
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { TagModule } from 'primeng/tag';
+
 
 
 @NgModule({
@@ -41,6 +47,10 @@ import { DropdownModule } from 'primeng/dropdown';
   ],
 
   imports: [
+    TagModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    InputTextareaModule,
     DropdownModule,
     InputNumberModule,
     CalendarModule,

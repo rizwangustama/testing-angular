@@ -12,11 +12,11 @@ import { EmployeeServices } from '../../services/employee.services'
 export class EmployeeComponent implements OnInit {
 
   constructor(
-    private router: Router, 
-    private confirmationService: ConfirmationService, 
+    private router: Router,
+    private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private employeeServices: EmployeeServices,
-    ) {
+  ) {
   }
 
   items: MenuItem[] = [
@@ -50,12 +50,20 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
+  public formatDate(date: Date) {
+    const today = new Date(date);
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const year = today.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+
   confirmDeleteEmployee(id: number): void {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete this employee?',
       accept: () => {
         this.handleDelete(id);
-        this.showError('Delete Success', 'Deleted');
+        this.showSuccess('Deleted ata employee Success');
       }
     });
   }
@@ -72,10 +80,10 @@ export class EmployeeComponent implements OnInit {
   }
 
   public showSuccess(Content?: string) {
-    this.messageService.add({severity:'success', summary: 'Success', detail: Content || 'Completed Success'});
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: Content || 'Completed Success' });
   }
 
   public showError(Content?: string, error?: string) {
-    this.messageService.add({severity: 'error', summary: error || 'Error Message', detail: Content || 'Error Message'});
+    this.messageService.add({ severity: 'error', summary: error || 'Error Message', detail: Content || 'Error Message' });
   }
 }
