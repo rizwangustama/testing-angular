@@ -4,34 +4,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './features/auth/auth.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { StepperModule } from 'primeng/stepper';
 import { PanelModule } from 'primeng/panel';
 import { PasswordModule } from 'primeng/password';
-
 import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { EmployeeComponent } from './features/employee/employee.component';
 import { TableModule } from 'primeng/table';
-
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { DetailEmployeeComponent } from './features/employee/detail-employee/detail-employee.component';
-
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { TagModule } from 'primeng/tag';

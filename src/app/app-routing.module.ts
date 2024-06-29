@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { AuthComponent } from './features/auth/auth.component';
 import { EmployeeComponent } from './features/employee/employee.component';
 import { DetailEmployeeComponent } from './features/employee/detail-employee/detail-employee.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ErrorComponent } from './features/error/error.component';
-
 
 const routes: Routes = [
   {
