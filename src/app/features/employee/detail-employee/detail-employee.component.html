@@ -1,0 +1,32 @@
+<p-toast />
+<section class="container">
+    <div class="max-w-xl mx-auto">
+        <p-panel header="Detail Employee">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col gap-6">
+                <div class="flex flex-col gap-2">
+                    <label for="username">Username*</label>
+                    <input pInputText id="username" aria-describedby="username-help" formControlName="username" />
+                    <span class="error-message" *ngIf="hasError('username', 'required')">Username is required</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="username">Fist Name</label>
+                    <input pInputText id="firstName" aria-describedby="firstName" formControlName="firstName" />
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="lastName">Last Name</label>
+                    <input pInputText id="lastName" aria-describedby="lastName-help" formControlName="lastName" />
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="email">Email</label>
+                    <input pInputText id="email" aria-describedby="email-help" formControlName="email" />
+                </div>
+
+
+                <div class="flex flex-row gap-4 justify-end">
+                    <p-button type="submit" label="Save" [disabled]="!form.valid" severity="primary"></p-button>
+                    <p-button type="button" label="Cancel" severity="danger"></p-button>
+                </div>
+            </form>
+        </p-panel>
+    </div>
+</section>

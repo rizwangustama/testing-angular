@@ -1,0 +1,22 @@
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    margin-bottom: 12px;
+}
+.form-group input {
+    margin-bottom: 10px;
+}
+
+#form-login {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+.section-auth {
+    padding: 100px 0;
+}
