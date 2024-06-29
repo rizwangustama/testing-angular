@@ -1,4 +1,5 @@
 # Pendahuluan
+Perhatian Jangan Lupa Harus terhubung ke internet Soalnya ada beberapa Gambar Ambil dari Internet, <br>
 Silahkan Masuk Login Menggunakan `username` dan `password` Dibawah Ini :
 ## Data Employee
 ```json
