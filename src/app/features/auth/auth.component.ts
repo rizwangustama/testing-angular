@@ -65,7 +65,11 @@ export class AuthComponent implements OnInit {
       if (this.authService.login(username, password)) {
         await this.router.navigate(['/employee']);
         this.showSuccess();
+      } else {
+        this.showError('Username or Password is incorrect');
       }
+    } else {
+      this.showError('Username or Password is incorrect');
     }
   }
 

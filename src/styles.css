@@ -7,6 +7,21 @@
 @tailwind utilities;
 
 
-.error-message {
-    @apply text-red-500 mt-2;
+
+/* Order */
+@layer reset, primeng;
+
+/* Reset CSS */
+@layer reset {
+    button,
+    input {
+        /* CSS to Reset */
+    }
+
+    .p-message-wrapper {
+        @apply px-3 py-2;
+    }
+    .p-message-error {
+        @apply my-2;
+    }
 }

@@ -35,6 +35,11 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { TagModule } from 'primeng/tag';
+import { AddEmployeeComponent } from './features/employee/add-employee/add-employee.component';
+
+import { InputMaskModule } from 'primeng/inputmask';
+import { MessagesModule } from 'primeng/messages';
+import { CardModule } from 'primeng/card';
 
 
 
@@ -44,10 +49,14 @@ import { TagModule } from 'primeng/tag';
     AuthComponent,
     EmployeeComponent,
     DetailEmployeeComponent,
+    AddEmployeeComponent,
   ],
 
   imports: [
+    CardModule,
+    MessagesModule,
     TagModule,
+    InputMaskModule,
     InputGroupModule,
     InputGroupAddonModule,
     InputTextareaModule,
