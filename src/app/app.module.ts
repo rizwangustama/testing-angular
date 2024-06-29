@@ -27,6 +27,8 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { DetailEmployeeComponent } from './features/employee/detail-employee/detail-employee.component';
 
+import { CalendarModule } from 'primeng/calendar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,7 @@ import { DetailEmployeeComponent } from './features/employee/detail-employee/det
   ],
 
   imports: [
+    CalendarModule,
     IconFieldModule,
     InputIconModule,
     CheckboxModule,

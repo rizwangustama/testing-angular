@@ -11,19 +11,19 @@ const routes: Routes = [
   {
     path: 'employee',
     component: EmployeeComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'employee/:id',
     component: DetailEmployeeComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
-  {
-    path: 'login',
-    component: AuthComponent,
-  },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' },
+  // {
+  //   path: 'login',
+  //   component: AuthComponent,
+  // },
+  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+  // { path: '**', redirectTo: '/login' },
 ];
 
 @NgModule({
