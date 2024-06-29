@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, PrimeIcons, MenuItem, MessageService } from 'primeng/api';
-import { Employee } from '../../models/employee-model.models';
+import { Employee, EmployeeStatus, EmployeeGroup, EmployeeGroupName, EmployeeGroupDescription } from '../../models/employee-model.models';
 import { EmployeeServices } from '../../services/employee.services'
 
 @Component({
@@ -32,21 +32,23 @@ export class EmployeeComponent implements OnInit {
   ];
 
   public employees: Employee[] = [];
+  public listGroup: EmployeeGroup[] = [];
   loading: boolean = true;
   searchValue: string | undefined;
   activityValues: number[] = [0, 100];
   globalFilter: string | undefined;
+  public title: string = 'Employee List';
 
 
 
   async ngOnInit(): Promise<void> {
+    this.listGroup = this.employeeServices.getListEmployeeGroup();
     let res = this.employeeServices.getEmployees();
     if (res) {
       this.employees = res;
       setTimeout(() => {
         this.loading = false;
       }, 2000);
-
     }
   }
 
@@ -63,13 +65,17 @@ export class EmployeeComponent implements OnInit {
       message: 'Are you sure you want to delete this employee?',
       accept: () => {
         this.handleDelete(id);
-        this.showSuccess('Deleted ata employee Success');
+        this.showError('Deleted data employee Success', 'Success Message');
       }
     });
   }
 
   public handleEdit(id: number) {
     this.router.navigate(['/employee/' + id]);
+  }
+
+  public handleAdd() {
+    this.router.navigate(['/employee/add']);
   }
 
   public handleDelete(id: number) {
@@ -85,5 +91,11 @@ export class EmployeeComponent implements OnInit {
 
   public showError(Content?: string, error?: string) {
     this.messageService.add({ severity: 'error', summary: error || 'Error Message', detail: Content || 'Error Message' });
+  }
+
+  getUnitCode(event: string) {
+    const filterDescription = this.listGroup.find((x: any) => x.description === event);
+    return filterDescription?.name;
+    
   }
 }

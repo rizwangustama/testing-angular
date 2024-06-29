@@ -1,59 +1,153 @@
 <p-toast />
 <section class="container py-20">
-    <div class="max-w-xl mx-auto">
-        <p-panel header="Detail Employee">
+    <div class="mx-auto">
+        <p-panel [header]="title">
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col gap-6">
                 <div class="flex flex-col gap-2">
                     <label for="username">Username*</label>
-                    <input pInputText id="username" aria-describedby="username-help" formControlName="username" />
-                    <span class="error-message" *ngIf="hasError('username', 'required')">Username is required</span>
-                </div>
-                <div class="flex flex-row gap-5">
-                    <div class="flex flex-col gap-2 w-1/2">
-                        <label for="firstName">Fist Name</label>
-                        <input pInputText id="firstName" aria-describedby="firstName" formControlName="firstName" />
+                    <input pInputText id="username" aria-describedby="username-help" placeholder="Enter your username"
+                        formControlName="username" />
+                    <div
+                        *ngIf="form.get('username')?.invalid && (form.get('username')?.dirty || form.get('username')?.touched)">
+                        <div *ngIf="form.get('username')?.errors?.['required']">
+                            <p-messages severity="error">
+                                <ng-template pTemplate class="py-0">
+                                    <i class="pi pi-times-circl"></i>
+                                    <div class="ml-2">username is required</div>
+                                </ng-template>
+                            </p-messages>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-2 w-1/2">
-                        <label for="lastName">Last Name</label>
-                        <input pInputText id="lastName" aria-describedby="lastName-help" formControlName="lastName" />
+                </div>
+                <div class="flex flex-col md:flex-row gap-5">
+                    <div class="flex flex-col gap-2 w-full md:w-1/2">
+                        <label for="firstName">Fist Name*</label>
+                        <input pInputText id="firstName" aria-describedby="firstName"
+                            placeholder="Enter your first name" formControlName="firstName" />
+                            <div *ngIf="form.get('firstName')?.invalid && (form.get('firstName')?.dirty || form.get('firstName')?.touched)">
+                            <div *ngIf="form.get('firstName')?.errors?.['required']">
+                                <p-messages severity="error">
+                                    <ng-template pTemplate class="py-0">
+                                        <i class="pi pi-times-circl"></i>
+                                        <div class="ml-2">first name is required</div>
+                                    </ng-template>
+                                </p-messages>
+                            </div>
+                            </div>
+                    </div>
+                    <div class="flex flex-col gap-2 w-full md:w-1/2">
+                        <label for="lastName">Last Name*</label>
+                        <input pInputText [type]="'text'" id="lastName" aria-describedby="lastName-help"
+                            placeholder="Enter your last name" formControlName="lastName" />
+                            <div *ngIf="form.get('lastName')?.invalid && (form.get('lastName')?.dirty || form.get('lastName')?.touched)">
+                            <div *ngIf="form.get('lastName')?.errors?.['required']">
+                                <p-messages severity="error">
+                                    <ng-template pTemplate class="py-0">
+                                        <i class="pi pi-times-circl"></i>
+                                        <div class="ml-2">last name is required</div>
+                                    </ng-template>
+                                </p-messages>
+                            </div>
+                            </div>
                     </div>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <label for="email">Email</label>
-                    <input pInputText id="email" aria-describedby="email-help" formControlName="email" />
+                    <label for="email">Email*</label>
+                    <input pInputText id="email" type="email" [type]="'email'" aria-describedby="email-help"
+                        placeholder="Enter your email" formControlName="email" />
+                    <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
+                        <div *ngIf="form.get('email')?.errors?.['email']">
+                            <p-messages severity="error">
+                                <ng-template pTemplate class="py-0">
+                                    <i class="pi pi-times-circl"></i>
+                                    <div class="ml-2">Format email is invalid</div>
+                                </ng-template>
+                            </p-messages>
+                        </div>
+                    </div>
                 </div>
                 <div class="flex flex-row gap-5">
                     <div class="flex flex-col gap-2 w-1/2">
-                        <label for="birthDate">Birth Date</label>
-                        <p-calendar styleClass="w-full" [showIcon]="true" [maxDate]="maxDate" id="birthDate"
-                            formControlName="birthDate" />
+                        <label for="birthDate">Birth Date*</label>
+                        <p-calendar styleClass="w-full" [defaultDate]="maxDate" [showIcon]="true" [maxDate]="maxDate"
+                            id="birthDate" formControlName="birthDate" />
+                        <div *ngIf="form.get('birthDate')?.invalid && (form.get('birthDate')?.dirty || form.get('birthDate')?.touched)">
+                            <div *ngIf="form.get('birthDate')?.errors?.['required']">
+                                <p-messages severity="error">
+                                    <ng-template pTemplate class="py-0">
+                                        <i class="pi pi-times-circle"></i>
+                                        <div class="ml-2">birth date is required</div>
+                                    </ng-template>
+                                </p-messages>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex flex-col gap-2 w-1/2">
-                        <label for="status">Status</label>
-                        <p-dropdown formControlName="status" styleClass="w-full" [options]="listStatus"
+                        <label for="status">Status*</label>
+                        <p-dropdown formControlName="status" id="status" styleClass="w-full" [options]="listStatus"
                             optionValue="description" optionLabel="name" placeholder="Select a Status" />
+                        <div *ngIf="form.get('status')?.invalid && (form.get('status')?.dirty || form.get('status')?.touched)">
+                            <div *ngIf="form.get('status')?.errors?.['required']">
+                                <p-messages severity="error">
+                                    <ng-template pTemplate class="py-0">
+                                        <i class="pi pi-times-circle"></i>
+                                        <div class="ml-2">status is required</div>
+                                    </ng-template>
+                                </p-messages>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <label for="basicSalary">Basic Salary</label>
+                    <label for="basicSalary">Basic Salary*</label>
                     <p-inputNumber id="basicSalary" styleClass="w-full" formControlName="basicSalary"
                         inputId="currency-us" mode="currency" currency="IDR" locale="id-ID" />
+                    <div *ngIf="form.get('basicSalary')?.invalid && (form.get('basicSalary')?.dirty || form.get('basicSalary')?.touched)">
+                        <div *ngIf="form.get('basicSalary')?.errors?.['required']">
+                            <p-messages severity="error">
+                                <ng-template pTemplate class="py-0">
+                                    <i class="pi pi-times-circle"></i>
+                                    <div class="ml-2">basic salary is required</div>
+                                </ng-template>
+                            </p-messages>
+                        </div>
+                    </div>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <label for="group">Group</label>
-                    <p-dropdown styleClass="w-full" [options]="listGroup" formControlName="group" optionValue="description" optionLabel="name" [filter]="true"
-                        filterBy="name" [showClear]="true" placeholder="Select a Group">
+                    <label for="group">Group*</label>
+                    <p-dropdown styleClass="w-full" [options]="listGroup" formControlName="group"
+                        optionValue="description" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
+                        placeholder="Select a Group">
                     </p-dropdown>
-
+                    <div *ngIf="form.get('group')?.invalid && (form.get('group')?.dirty || form.get('group')?.touched)">
+                        <div *ngIf="form.get('group')?.errors?.['required']">
+                            <p-messages severity="error">
+                                <ng-template pTemplate class="py-0">
+                                    <i class="pi pi-times-circle"></i>
+                                    <div class="ml-2">group is required</div>
+                                </ng-template>
+                            </p-messages>
+                        </div>
+                    </div>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <label for="description">Description</label>
-                    <textarea rows="5" cols="30" pInputTextarea id="description" aria-describedby="email-help"
-                        formControlName="description">
+                    <label for="description">Description*</label>
+                    <textarea rows="5" cols="30" placeholder="Enter your description" pInputTextarea id="description"
+                        aria-describedby="email-help" formControlName="description">
                     </textarea>
+                    <div *ngIf="form.get('description')?.invalid && (form.get('description')?.dirty || form.get('description')?.touched)">
+                        <div *ngIf="form.get('description')?.errors?.['required']">
+                            <p-messages severity="error">
+                                <ng-template pTemplate class="py-0">
+                                    <i class="pi pi-times-circle"></i>
+                                    <div class="ml-2">description is required</div>
+                                </ng-template>
+                            </p-messages>
+                        </div>
+                    </div>
                 </div>
                 <div class="flex flex-row gap-4 justify-end">
-                    <p-button type="submit" label="Save" [disabled]="!form.valid" severity="primary"></p-button>
+                    <p-button type="submit" label="Save" [disabled]="form.invalid" severity="primary"></p-button>
                     <p-button type="button" (click)="onCancel()" label="Cancel" severity="danger"></p-button>
                 </div>
             </form>

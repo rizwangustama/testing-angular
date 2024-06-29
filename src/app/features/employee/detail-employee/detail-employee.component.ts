@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Employee, EmployeeStatus, EmployeeGroupName, EmployeeGroupDescription } from '../../../models/employee-model.models';
 import { EmployeeServices } from '../../../services/employee.services'
-import { MessageService } from 'primeng/api';
+import { MessageService, Message } from 'primeng/api';
 
 @Component({
   selector: 'app-detail-employee',
@@ -13,12 +13,14 @@ import { MessageService } from 'primeng/api';
 })
 export class DetailEmployeeComponent implements OnInit {
 
-  form!: FormGroup;
-  id!: number;
-  employee!: Employee[];
-  detailEmployee!: any;
+  public form!: FormGroup;
+  public id!: number;
+  public employee!: Employee[];
+  public detailEmployee!: any;
   public isDisabled: boolean = false;
-  maxDate: Date = new Date();
+  public maxDate: Date = new Date();
+  public title!: string;
+  messages!: Message[];
   public listStatus: any[] = [
     {
       name: 'Active',
@@ -43,12 +45,12 @@ export class DetailEmployeeComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.id = parseInt(this.getId());
+    this.id >= 0 ? this.title = 'Edit Employee' : this.title = 'Add Employee';
     this.form = this.fb.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', Validators.email],
       birthDate: ['', Validators.required],
       basicSalary: ['', Validators.required],
       status: ['', Validators.required],
@@ -70,21 +72,27 @@ export class DetailEmployeeComponent implements OnInit {
   }
 
   onSubmit() : void {
+    console.log(this.form);
     if (this.form.valid) {
-      const updatedEmployee: Employee = {
-        id: this.id,
-        ...this.form.value
-      };
-      let success = this.employeeServices.updateEmployee(updatedEmployee);
-      this.showSuccess('Update Data Employee Success');
-      this.router.navigate(['/employee']);
+      if (this.id >= 0) {
+        const updatedEmployee: Employee = {
+          id: this.id,
+          ...this.form.value
+        };
+        let success = this.employeeServices.updateEmployee(updatedEmployee);
+        this.showSuccess('Update Data Employee Success');
+        this.router.navigate(['/employee']);
+      } else {
+        let success = this.employeeServices.addEmployee(this.form.value);
+        this.showSuccess('Add Data Employee Success');
+        this.router.navigate(['/employee']);
+      }
     }
   }
 
   public fieldForm() {
     this.form.patchValue({
       username: this.detailEmployee.username,
-      password: this.detailEmployee.password,
       firstName: this.detailEmployee.firstName,
       lastName: this.detailEmployee.lastName,
       email: this.detailEmployee.email,
@@ -98,7 +106,7 @@ export class DetailEmployeeComponent implements OnInit {
     console.log(this.form.value)
   }
   getId() {
-    return this.route.snapshot.params['id'];
+    return this.route.snapshot.params['id'] ? this.route.snapshot.params['id'] : -1;
   }
 
   get f() { return this.form.controls; }
@@ -119,10 +127,5 @@ export class DetailEmployeeComponent implements OnInit {
 
   public showWarning(Content?: string) {
     this.messageService.add({severity: 'warn', summary: 'Warn Message', detail: Content || 'Warn Message'});
-  }
-
-  getUnitCode(event: any) {
-    const g = this.listGroup.find((x: any) => x.group === event);
-    return g?.description;
   }
 }
