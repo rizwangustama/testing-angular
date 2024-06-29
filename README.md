@@ -1,3 +1,34 @@
+# Pendahuluan
+
+`
+  {
+            id: 1,
+            username: 'rizwangustama',
+            firstName: 'Rizwan',
+            lastName: 'Gustama',
+            email: 'rizonegustama@gmail.com',
+            birthDate: new Date(1999, 9, 8),
+            basicSalary: 1000,
+            status: EmployeeStatusDescription.Active,
+            group: 'DEVELOPER',
+            description: 'Description1',
+            password: 'admin',
+        },
+        {
+            id: 2,
+            username: 'johnsmith',
+            firstName: 'John',
+            lastName: 'Smith',
+            email: 'john.smith@example.com',
+            birthDate: new Date(1990, 7, 22),
+            basicSalary: 2000,
+            status: EmployeeStatusDescription.Inactive,
+            group: 'SALE',
+            description: 'Description2',
+            password: 'Password2',
+        },
+`
+
 # AngularTest
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.6.
