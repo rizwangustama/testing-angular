@@ -35,13 +35,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { TagModule } from 'primeng/tag';
-import { AddEmployeeComponent } from './features/employee/add-employee/add-employee.component';
-
 import { InputMaskModule } from 'primeng/inputmask';
 import { MessagesModule } from 'primeng/messages';
 import { CardModule } from 'primeng/card';
-
-
+import { ErrorComponent } from './features/error/error.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +46,7 @@ import { CardModule } from 'primeng/card';
     AuthComponent,
     EmployeeComponent,
     DetailEmployeeComponent,
-    AddEmployeeComponent,
+    ErrorComponent,
   ],
 
   imports: [
