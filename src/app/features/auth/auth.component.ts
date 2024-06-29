@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../core/services/auth.service';
+import { EmployeeServices } from '../../services/employee.services'
 
 interface Employee {
   username: string,
@@ -36,23 +37,22 @@ export class AuthComponent implements OnInit {
     description: 'admin',
     password: 'admin',
   }
-  
-  public mediumRegex!: RegExp;
-  public strongRegex!: RegExp;
+
+  listEmployee: Employee[] = []
 
   formLogin!: FormGroup;
   constructor(
     private fb: FormBuilder, 
     private router: Router,
     private messageService: MessageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private employeeServices: EmployeeServices,
   ) {
-    this.mediumRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}$');
-    this.strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$');
   }
   public value: string = '';
 
   ngOnInit(): void {
+    this.listEmployee =  this.employeeServices.getEmployees();
     this.formLogin = this.fb.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(4)]]
@@ -72,7 +72,7 @@ export class AuthComponent implements OnInit {
       this.showError('Username or Password is incorrect');
     }
   }
-  
+
   public showSuccess(Content?: string) {
     this.messageService.add({severity:'success', summary: 'Success', detail: Content || 'Completed Success'});
   }

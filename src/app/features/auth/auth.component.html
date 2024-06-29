@@ -2,7 +2,9 @@
     <div class="container">
         <div class="max-w-lg mx-auto">
             <p-card styleClass="p-6">
-                <div class="h-[200px] w-[200px] rounded-full mx-auto mb-8 bg-gray-300"></div>
+                <div class="rounded-full mx-auto mb-8  h-[200px] border border-gray-600 p-10 w-[200px] flex justify-center items-center">
+                    <img width="100" class="w-[120px] h-fit" height="100" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Apple_logo_grey.svg" alt="">
+                </div>
                 <h2 class="text-2xl font-semibold mb-8 text-center">Please login to your account</h2>
                 <form (ngSubmit)="onSubmit()" [formGroup]="formLogin">
                     <div class="form-group">
@@ -23,10 +25,19 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <p-password [weakLabel]="'Weak'" [mediumLabel]="'Medium'" [strongLabel]="'Strong'"
-                            type="password" [minlength]="4" promptLabel="Enter your password" styleClass="w-full"
-                            inputStyleClass="w-full" id="password" [feedback]="true" formControlName="password"
-                            placeholder="Enter your password" [feedback]="true"></p-password>
+                        <p-password 
+                        [weakLabel]="'Weak'" 
+                        [mediumLabel]="'Medium'" 
+                        [strongLabel]="'Strong'"
+                            type="password" 
+                            [minlength]="4" 
+                            promptLabel="Enter your password" 
+                            styleClass="w-full"
+                            inputStyleClass="w-full" 
+                            id="password" 
+                            formControlName="password"
+                            placeholder="Enter your password" 
+                            [feedback]="false"></p-password>
                         <div
                             *ngIf="formLogin.get('password')?.invalid && (formLogin.get('password')?.dirty || formLogin.get('password')?.touched)">
                             <div *ngIf="formLogin.get('password')?.errors?.['required']">

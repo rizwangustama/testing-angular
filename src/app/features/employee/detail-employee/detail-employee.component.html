@@ -69,7 +69,7 @@
                 <div class="flex flex-row gap-5">
                     <div class="flex flex-col gap-2 w-1/2">
                         <label for="birthDate">Birth Date*</label>
-                        <p-calendar styleClass="w-full" [defaultDate]="maxDate" [showIcon]="true" [maxDate]="maxDate"
+                        <p-calendar  [iconDisplay]="'input'"  styleClass="w-full" [defaultDate]="maxDate" [showIcon]="true" [maxDate]="maxDate"
                             id="birthDate" formControlName="birthDate" />
                         <div *ngIf="form.get('birthDate')?.invalid && (form.get('birthDate')?.dirty || form.get('birthDate')?.touched)">
                             <div *ngIf="form.get('birthDate')?.errors?.['required']">
@@ -147,8 +147,8 @@
                     </div>
                 </div>
                 <div class="flex flex-row gap-4 justify-end">
-                    <p-button type="submit" label="Save" [disabled]="form.invalid" severity="primary"></p-button>
-                    <p-button type="button" (click)="onCancel()" label="Cancel" severity="danger"></p-button>
+                    <p-button type="submit" label="Save" [icon]="'pi pi-save'" [disabled]="form.invalid" severity="primary"></p-button>
+                    <p-button type="button" (click)="onCancel()" icon="pi pi-times" [outlined]="true" label="Cancel" severity="danger"></p-button>
                 </div>
             </form>
         </p-panel>

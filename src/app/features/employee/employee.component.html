@@ -3,18 +3,19 @@
 <p-toast />
 <section class="container py-20">
     <p-panel [header]="title">
-        <p-table #dt2 [value]="employees" [scrollable]="true" [loading]="loading" [paginator]="true" [rows]="5"
+        <p-table #dt2 [value]="employees" [scrollable]="true" [loading]="loading" [paginator]="true" [rows]="10"
             [tableStyle]="{ 'min-width': '50rem' }"
+            scrollHeight="900px"
             [globalFilterFields]="['username', 'firstName', 'lastName', 'email' ]" [rowsPerPageOptions]="[5, 10, 20]">
 
             <ng-template pTemplate="caption">
                 <div class="flex flex-col md:flex-row gap-4 md:gap-0">
-                    <p-button type="button" (click)="handleAdd()" label="New" icon="pi pi-plus"></p-button>
+                    <p-button type="button" (click)="handleAdd()" [outlined]="true" [rounded]="false" label="Add New" icon="pi pi-plus"></p-button>
                     <p-iconField iconPosition="left" class="md:ml-auto">
                         <p-inputIcon>
                             <i class="pi pi-search"></i>
                         </p-inputIcon>
-                        <input pInputText type="text" class="w-full" [(ngModel)]="globalFilter"
+                        <input pInputText type="text" class="w-full"  [(ngModel)]="globalFilter"
                             (input)="dt2.filterGlobal(globalFilter, 'contains')" placeholder="Search keyword" />
                     </p-iconField>
                 </div>
@@ -63,10 +64,10 @@
             <ng-template pTemplate="body" let-employee>
                 <tr>
                     <td class="flex gap-2">
-                        <p-button icon="pi pi-pencil" (onClick)="handleEdit(employee.id)" [rounded]="true"
-                            severity="warning">
+                        <p-button icon="pi pi-pencil"[size]="'small'" [outlined]="false" (onClick)="handleEdit(employee.id)" [rounded]="false"
+                            severity="primary">
                         </p-button>
-                        <p-button icon="pi pi-trash" [rounded]="true" severity="danger" class="rounded-full"
+                        <p-button icon="pi pi-trash" [size]="'small'" [outlined]="false" [rounded]="false" severity="danger" class="rounded-full"
                             (onClick)="confirmDeleteEmployee(employee.id)">
                         </p-button>
                     </td>

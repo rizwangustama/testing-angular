@@ -1,16 +1,25 @@
 import { Injectable } from '@angular/core';
+import { EmployeeServices } from '../../services/employee.services';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+    listUser!: any[];
+    constructor(private employeeServices: EmployeeServices) {
+        this.listUser = this.employeeServices.getEmployees();
+    }
     private isLoggedIn = false;
 
     login(username: string, password: string): boolean {
-        // Logika login Anda (misalnya verifikasi username dan password)
         console.log(username, password);
-        if (username === 'admin' && password === 'admin') {
+        const filterUser = this.listUser.find(user => ( user.username === username || user.email === username ) && user.password === password);
+        if (filterUser) {
             this.isLoggedIn = true;
             return true;
         }
+        // if (username === 'admin' && password === 'admin') {
+        //     this.isLoggedIn = true;
+        //     return true;
+        // }
         return false;
     }
 
