@@ -4,32 +4,45 @@
 
 ```json
 [
-    {
-        "id": 1,
-        "username": "rizwangustama",
-        "firstName": "Rizwan",
-        "lastName": "Gustama",
-        "email": "email1@example.com",
-        "birthdate": "1988-06-15T00:00:00.000Z",
-        "basicSalary": 1000,
-        "status": "Active",
-        "group": "ADMIN",
-        "description": "Description1",
-        "password": "Password1"
-    },
-    {
-        "id": 2,
-        "username": "johnsmith",
-        "firstName": "John",
-        "lastName": "Smith",
-        "email": "john.smith@example.com",
-        "birthdate": "1990-03-22T00:00:00.000Z",
-        "basicSalary": 2000,
-        "status": "Inactive",
-        "group": "ADMIN",
-        "description": "Description2",
-        "password": "Password2"
-    }
+     {
+            id: 1,
+            username: 'rizwangustama',
+            firstName: 'Rizwan',
+            lastName: 'Gustama',
+            email: 'rizonegustama@gmail.com',
+            birthDate: new Date(1999, 9, 8),
+            basicSalary: 1000,
+            status: EmployeeStatusDescription.Active,
+            group: 'DEVELOPER',
+            description: 'Description1',
+            password: 'admin',
+        },
+        {
+            id: 2,
+            username: 'johnsmith',
+            firstName: 'John',
+            lastName: 'Smith',
+            email: 'john.smith@example.com',
+            birthDate: new Date(1990, 7, 22),
+            basicSalary: 2000,
+            status: EmployeeStatusDescription.Inactive,
+            group: 'SALE',
+            description: 'Description2',
+            password: 'Password2',
+        },
+        {
+            id: 3,
+            username: 'janedoe',
+            firstName: 'Jane',
+            lastName: 'Doe',
+            email: 'jane.doe@example.com',
+            birthDate: new Date(1985, 10, 10),
+            basicSalary: 3000,
+            status: EmployeeStatusDescription.Active,
+            group: 'DEVELOPER',
+            description: 'Description3',
+            password: 'Password3',
+        },
 ]
 ```
 
