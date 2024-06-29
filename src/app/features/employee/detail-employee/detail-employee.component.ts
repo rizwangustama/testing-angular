@@ -48,6 +48,7 @@ export class DetailEmployeeComponent implements OnInit {
     });
 
     await this.getDetailEmployee();
+    this.getListStatusEmployee();
     this.listGroup = this.employeeServices.getListEmployeeGroup();
     this.fieldForm();
   }
@@ -58,6 +59,10 @@ export class DetailEmployeeComponent implements OnInit {
 
   async getDetailEmployee() {
     this.detailEmployee = await this.employeeServices.getEmployeeById(this.id);
+  }
+
+  getListStatusEmployee() {
+    this.listStatus = this.employeeServices.getListStatus();
   }
 
   onSubmit() : void {
@@ -99,7 +104,7 @@ export class DetailEmployeeComponent implements OnInit {
   }
 
   get f() { return this.form.controls; }
-  
+
   get username() { return this.form.get('username'); }
 
   get password() { return this.form.get('password'); }

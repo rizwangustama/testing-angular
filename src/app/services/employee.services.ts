@@ -573,6 +573,10 @@ export class EmployeeServices {
         },
     ]
 
+    getListStatus(): EmployeeStatus[] {
+        return this.listStatus;
+    }
+
 
     getListEmployeeGroup(): EmployeeGroup[] {
         return this.listGroup;
