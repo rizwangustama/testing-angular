@@ -1,4 +1,14 @@
-export enum EmployeeStatus {
+// export enum EmployeeStatus {
+//     Active = 'Active',
+//     Inactive = 'Inactive',
+// }
+
+export enum EmployeeStatusName {
+    Active = 'Active',
+    Inactive = 'Inactive',
+}
+
+export enum EmployeeStatusDescription {
     Active = 'Active',
     Inactive = 'Inactive',
 }
@@ -30,6 +40,12 @@ export enum EmployeeGroupDescription {
     DIRECTOR = 'DIRECTOR',
 }
 
+
+export interface EmployeeStatus {
+    name: EmployeeStatusName;
+    description: EmployeeStatusDescription;
+}
+
 export interface Employee {
     id: number;
     username: string;
@@ -38,7 +54,7 @@ export interface Employee {
     email: string;
     birthDate: Date;
     basicSalary: number;
-    status: EmployeeStatus;
+    status: EmployeeStatusDescription;
     group: string;
     description: string;
     password: string;

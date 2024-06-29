@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { Employee, EmployeeStatus, EmployeeGroupName, EmployeeGroupDescription } from '../../../models/employee-model.models';
+import { Employee, EmployeeStatus, EmployeeGroup, EmployeeGroupName, EmployeeGroupDescription } from '../../../models/employee-model.models';
 import { EmployeeServices } from '../../../services/employee.services'
-import { MessageService, Message } from 'primeng/api';
+import { MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-detail-employee',
@@ -20,19 +20,8 @@ export class DetailEmployeeComponent implements OnInit {
   public isDisabled: boolean = false;
   public maxDate: Date = new Date();
   public title!: string;
-  messages!: Message[];
-  public listStatus: any[] = [
-    {
-      name: 'Active',
-      description: EmployeeStatus.Active
-    },
-    {
-      name: 'Inactive',
-      description: EmployeeStatus.Inactive
-    }
-  ];
-
-  public listGroup!: any[];
+  public listStatus: EmployeeStatus[] = [];
+  public listGroup!: EmployeeGroup[];
 
   constructor(
     private fb: FormBuilder,
@@ -110,7 +99,9 @@ export class DetailEmployeeComponent implements OnInit {
   }
 
   get f() { return this.form.controls; }
+  
   get username() { return this.form.get('username'); }
+
   get password() { return this.form.get('password'); }
 
   hasError(controlName: string, errorName: string) {

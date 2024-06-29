@@ -72,11 +72,7 @@ export class AuthComponent implements OnInit {
       this.showError('Username or Password is incorrect');
     }
   }
-
-  hasError(controlName: string, errorName: string) {
-    return this.formLogin.get(controlName)?.hasError(errorName);
-  }
-
+  
   public showSuccess(Content?: string) {
     this.messageService.add({severity:'success', summary: 'Success', detail: Content || 'Completed Success'});
   }
