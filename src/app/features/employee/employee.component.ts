@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, PrimeIcons, MenuItem, MessageService } from 'primeng/api';
 import { Employee, EmployeeStatus, EmployeeGroup, EmployeeGroupName, EmployeeGroupDescription } from '../../models/employee-model.models';
-import { EmployeeServices } from '../../services/employee.services'
+import { EmployeeServices } from '../../services/employee.service'
 
 @Component({
   selector: 'app-employee',
@@ -66,6 +66,13 @@ export class EmployeeComponent implements OnInit {
         this.showError('Deleted data employee Success', 'Success Message');
       }
     });
+  }
+
+  public formatRupiah(value: number) {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+    }).format(value);
   }
 
   public handleEdit(id: number) {

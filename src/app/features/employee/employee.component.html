@@ -75,7 +75,7 @@
                     <td>{{ employee.firstName + ' ' + employee.lastName }}</td>
                     <td>{{ employee.email }}</td>
                     <td>{{ employee.birthDate.toLocaleDateString() }}</td>
-                    <td>{{ employee.basicSalary }}</td>
+                    <td>{{ formatRupiah(employee.basicSalary) || employee.basicSalary }}</td>
                     <td>
                         <p-tag [value]="employee.status" styleClass="py-2 px-4 bg-green-100 text-green-500 text-sm"
                             [rounded]="true" severity="success" *ngIf="employee.status === 'Active'"></p-tag>

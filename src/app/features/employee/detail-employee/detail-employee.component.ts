@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Employee, EmployeeStatus, EmployeeGroup, EmployeeGroupName, EmployeeGroupDescription } from '../../../models/employee-model.models';
-import { EmployeeServices } from '../../../services/employee.services'
+import { EmployeeServices } from '../../../services/employee.service'
 import { MessageService} from 'primeng/api';
 
 @Component({
@@ -65,8 +65,11 @@ export class DetailEmployeeComponent implements OnInit {
     this.listStatus = this.employeeServices.getListStatus();
   }
 
+  generateRandomId() {
+    return Math.floor(Math.random() * 1000);
+  }
+
   onSubmit() : void {
-    console.log(this.form);
     if (this.form.valid) {
       if (this.id >= 0) {
         const updatedEmployee: Employee = {
@@ -77,7 +80,11 @@ export class DetailEmployeeComponent implements OnInit {
         this.showSuccess('Update Data Employee Success');
         this.router.navigate(['/employee']);
       } else {
-        let success = this.employeeServices.addEmployee(this.form.value);
+        const newEmployee: Employee = {
+          id: this.generateRandomId(),
+          ...this.form.value
+        }
+        let success = this.employeeServices.addEmployee(newEmployee);
         this.showSuccess('Add Data Employee Success');
         this.router.navigate(['/employee']);
       }

@@ -14,7 +14,6 @@ export class AppComponent implements OnInit {
   constructor(private primengConfig: PrimeNGConfig) { }
 
   ngOnInit() {
-    this.isLogin =  JSON.parse(localStorage.getItem('isLogin') || 'false');
     this.items = [
       {
         label: 'Home',
