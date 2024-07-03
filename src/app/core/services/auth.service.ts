@@ -16,10 +16,6 @@ export class AuthService {
             this.isLoggedIn = true;
             return true;
         }
-        // if (username === 'admin' && password === 'admin') {
-        //     this.isLoggedIn = true;
-        //     return true;
-        // }
         return false;
     }
 

@@ -4,19 +4,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../core/services/auth.service';
 import { EmployeeServices } from '../../services/employee.services'
-
-interface Employee {
-  username: string,
-  firstName: string,
-  lastName: string,
-  email: string,
-  birthDate: Date,
-  basicSalary: number,
-  status: string,
-  group: string,
-  description: string,
-  password: string
-}
+import { Employee } from '../../models/employee-model.models';
 
 @Component({
   selector: 'app-auth',
@@ -25,18 +13,6 @@ interface Employee {
 })
 
 export class AuthComponent implements OnInit {
-  user: Employee = {
-    username: 'admin',
-    firstName: 'admin',
-    lastName: 'admin',
-    email: 'admin',
-    birthDate: new Date(),
-    basicSalary: 0,
-    status: 'admin',
-    group: 'admin',
-    description: 'admin',
-    password: 'admin',
-  }
 
   listEmployee: Employee[] = []
 

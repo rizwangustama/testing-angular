@@ -39,8 +39,6 @@ export class EmployeeComponent implements OnInit {
   globalFilter: string | undefined;
   public title: string = 'Employee List';
 
-
-
   async ngOnInit(): Promise<void> {
     this.listGroup = this.employeeServices.getListEmployeeGroup();
     let res = this.employeeServices.getEmployees();

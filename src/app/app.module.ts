@@ -32,6 +32,9 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { MessagesModule } from 'primeng/messages';
 import { CardModule } from 'primeng/card';
 import { ErrorComponent } from './features/error/error.component';
+import { MenubarModule } from 'primeng/menubar';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { ErrorComponent } from './features/error/error.component';
   ],
 
   imports: [
+    AvatarModule,
+    AvatarGroupModule,
+    MenubarModule,
     CardModule,
     MessagesModule,
     TagModule,
